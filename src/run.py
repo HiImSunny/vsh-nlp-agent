@@ -88,7 +88,7 @@ def main():
     print(f"[3/4] Scoring {len(records)} questions ...")
     t0 = time.perf_counter()
     try:
-        results = score_batch(records, backend, config, desc="Scoring")
+        results = score_batch(records, backend, config, desc="Preparing")
     finally:
         backend.close()
     elapsed = time.perf_counter() - t0

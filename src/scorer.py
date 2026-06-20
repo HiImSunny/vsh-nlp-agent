@@ -1,4 +1,3 @@
-
 """score_batch(records, backend, config) -> list[(qid, letter)]"""
 from __future__ import annotations
 from typing import List, Optional, Tuple
@@ -27,6 +26,6 @@ def score_batch(
         prompts.append(prompt)
         labels_list.append(valid_labels)
 
-    # Batch inference through backend
+    # Batch inference through backend (backend has its own tqdm)
     answers = backend.score_batch(prompts, labels_list)
     return [(r.qid, a) for r, a in zip(records, answers)]

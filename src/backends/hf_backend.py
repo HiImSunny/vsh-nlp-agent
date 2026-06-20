@@ -9,6 +9,7 @@ from __future__ import annotations
 from typing import List
 
 import torch
+from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 from src.backends.base import BaseBackend
@@ -51,7 +52,7 @@ class HFBackend(BaseBackend):
     ) -> List[str]:
         results: List[str] = []
         bsz = self._batch_size
-        for start in range(0, len(prompts), bsz):
+        for start in tqdm(range(0, len(prompts), bsz), desc="Infer", unit="batch"):
             chunk_prompts = prompts[start:start + bsz]
             chunk_labels = labels_list[start:start + bsz]
             batch = self._tok(
@@ -61,10 +62,7 @@ class HFBackend(BaseBackend):
                 return_tensors="pt",
             )
             batch = {k: v.to(self._model.device) for k, v in batch.items()}
-            outputs = self._model(
-                input_ids=batch["input_ids"],
-                attention_mask=batch["attention_mask"],
-            )
+            outputs = self._model(**batch)
             logits = outputs.logits
             for i in range(len(chunk_prompts)):
                 seq_len = batch["attention_mask"][i].sum().item()
