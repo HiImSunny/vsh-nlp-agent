@@ -24,7 +24,10 @@ class HFBackend(BaseBackend):
         if self._tok.pad_token is None:
             self._tok.pad_token = self._tok.eos_token
         self._model = AutoModelForCausalLM.from_pretrained(
-            model_path, trust_remote_code=True, torch_dtype=torch.float16
+            model_path,
+            trust_remote_code=True,
+            torch_dtype=torch.float16,
+            device_map="auto",
         )
         self._model.eval()
         self._label_ids: dict[str, int] = {}
@@ -37,7 +40,7 @@ class HFBackend(BaseBackend):
 
     @torch.inference_mode()
     def score_choices(self, prompt: str, valid_labels: List[str]) -> str:
-        inputs = self._tok(prompt, return_tensors="pt")
+        inputs = self._tok(prompt, return_tensors="pt").to(self._model.device)
         outputs = self._model(**inputs)
         last_logits = outputs.logits[0, -1, :]
         scores = {
