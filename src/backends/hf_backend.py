@@ -1,4 +1,4 @@
-﻿"""
+"""
 HuggingFace Transformers backend (CPU/GPU fallback).
 Loads model + tokenizer, gets logits at last position,
 picks argmax among valid_labels token ids.

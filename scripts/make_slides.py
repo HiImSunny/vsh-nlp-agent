@@ -1,4 +1,4 @@
-﻿"""
+"""
 Generate bilingual Vi/En presentation slides (.pptx).
 Output: docs/slides/presentation.pptx
 Requires: pip install python-pptx

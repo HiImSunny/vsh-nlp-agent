@@ -1,4 +1,4 @@
-﻿"""
+"""
 Entry point: read /data -> score -> write /output/pred.csv
 Usage: python src/run.py [--data-dir DIR] [--output-dir DIR] [--backend BACKEND]
 """

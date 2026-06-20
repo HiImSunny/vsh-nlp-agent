@@ -22,7 +22,7 @@ venv/
 env/
 .env/
 
-# Secrets / credentials — NEVER commit these
+# Secrets / credentials â€” NEVER commit these
 .env
 .env.*
 secrets.json
@@ -39,7 +39,7 @@ models/
 *.gguf
 *.ggml
 
-# Data files (raw inputs — track only fixtures in tests/fixtures/)
+# Data files (raw inputs â€” track only fixtures in tests/fixtures/)
 data/
 *.csv
 !submission_1780332147.csv

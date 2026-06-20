@@ -1,4 +1,4 @@
-﻿"""
+"""
 discover_input(data_dir) -> list[Record]
   Scan for *test*.csv > *test*.json > *.csv > *.json
   Auto-detect format, normalise choices to list[str]

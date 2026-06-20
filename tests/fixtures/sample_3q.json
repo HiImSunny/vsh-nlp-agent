@@ -1,4 +1,4 @@
-﻿[
+[
   {"qid": "test_0001", "question": "Thủ đô của Việt Nam là gì?", "choices": ["Hà Nội", "TP.HCM", "Đà Nẵng", "Huế"]},
   {"qid": "test_0003", "question": "2 + 2 bằng bao nhiêu?", "choices": ["3", "4", "5", "6"]},
   {"qid": "test_0005", "question": "Chọn đáp án đúng về màu cờ Việt Nam.", "choices": ["Xanh lá", "Đỏ", "Vàng", "Đỏ nền sao vàng"]}

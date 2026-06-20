@@ -1,4 +1,4 @@
-﻿"""TDD RED: test prompt building."""
+"""TDD RED: test prompt building."""
 import pytest
 from src.prompt import (
     answer_index_to_letter,

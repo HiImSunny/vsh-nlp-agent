@@ -1,4 +1,4 @@
-﻿# PROGRESS — Vietnamese MCQA HackAIthon 2026 (Bảng C)
+# PROGRESS — Vietnamese MCQA HackAIthon 2026 (Bảng C)
 
 > Auto-updated each commit. Legend: ✅ done · 🔄 in progress · ⏳ pending · ❌ blocked
 

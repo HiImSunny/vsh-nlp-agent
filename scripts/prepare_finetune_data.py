@@ -1,4 +1,4 @@
-﻿"""
+"""
 Prepare MCQA data for FPT AI Studio fine-tuning (Alpaca format).
 
 Usage:
@@ -58,10 +58,10 @@ def convert_to_alpaca(
             f"{l}. {c}" for l, c in zip(labels_list, choices)
         )
         instruction = (
-            "Đây là câu hỏi trắc nghiệm tiếng Việt. "
-            "Chọn đáp án đúng bằng cách trả lời CHỈ bằng một chữ cái."
+            "ÄÃ¢y lÃ  cÃ¢u há»i tráº¯c nghiá»‡m tiáº¿ng Viá»‡t. "
+            "Chá»n Ä‘Ã¡p Ã¡n Ä‘Ãºng báº±ng cÃ¡ch tráº£ lá»i CHá»ˆ báº±ng má»™t chá»¯ cÃ¡i."
         )
-        input_text = f"Câu hỏi: {question}\n\n{choices_text}\nĐáp án:"
+        input_text = f"CÃ¢u há»i: {question}\n\n{choices_text}\nÄÃ¡p Ã¡n:"
 
         output = labels.get(qid, "") if labels else ""
         if output and output not in labels_list:

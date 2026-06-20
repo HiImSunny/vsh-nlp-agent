@@ -1,4 +1,4 @@
-﻿"""TDD RED: test discover_input and write_predictions."""
+"""TDD RED: test discover_input and write_predictions."""
 import csv
 from pathlib import Path
 import pytest

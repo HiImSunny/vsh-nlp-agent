@@ -1,4 +1,4 @@
-﻿# ─────────────────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
 # HackAIthon 2026 Bảng C — Vietnamese MCQA Docker image
 # Build: docker build -t mcqa-hackaithon .
 # Run:   docker run --gpus all \

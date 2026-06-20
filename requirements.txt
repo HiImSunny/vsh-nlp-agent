@@ -1,4 +1,4 @@
-﻿# ── Core inference ────────────────────────────────────────────────────────────
+# ── Core inference ────────────────────────────────────────────────────────────
 # vLLM (GPU / production) — install separately on cloud GPU node
 # vllm>=0.4.0
 

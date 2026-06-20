@@ -1,4 +1,4 @@
-﻿"""TDD RED: integration test -- run.py on 3-Q fixture -> valid pred.csv."""
+"""TDD RED: integration test -- run.py on 3-Q fixture -> valid pred.csv."""
 import csv
 import os
 import subprocess

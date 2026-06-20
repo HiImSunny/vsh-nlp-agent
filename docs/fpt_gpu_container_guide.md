@@ -1,4 +1,4 @@
-﻿# FPT GPU Container -- Huong dan chi tiet
+# FPT GPU Container -- Huong dan chi tiet
 
 ## Buoc 1: Tao GPU Container
 

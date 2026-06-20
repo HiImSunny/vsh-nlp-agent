@@ -1,4 +1,4 @@
-﻿"""
+"""
 vLLM backend (production, GPU).
 Uses guided_choice so output is always a valid label letter.
 Requires: pip install vllm

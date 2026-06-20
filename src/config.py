@@ -1,4 +1,4 @@
-﻿"""
+"""
 Config dataclass -- all overridable via ENV vars.
 ENV: MCQA_MODEL_ID, MCQA_MODEL_PATH, MCQA_BACKEND (vllm|hf|stub|unslo),
      MCQA_QUANT (awq|gptq|none|bnb-4bit), MCQA_BATCH_SIZE,

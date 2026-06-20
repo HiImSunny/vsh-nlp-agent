@@ -1,4 +1,4 @@
-﻿"""TDD RED: test score_batch with StubBackend."""
+"""TDD RED: test score_batch with StubBackend."""
 from src.backends.stub_backend import StubBackend
 from src.config import Config
 from src.io_utils import Record

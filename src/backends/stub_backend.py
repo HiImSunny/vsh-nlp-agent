@@ -1,4 +1,4 @@
-﻿"""Deterministic hash-based backend -- no GPU, for unit tests."""
+"""Deterministic hash-based backend -- no GPU, for unit tests."""
 from __future__ import annotations
 from typing import List
 from src.backends.base import BaseBackend

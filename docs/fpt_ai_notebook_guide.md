@@ -1,4 +1,4 @@
-﻿# FPT AI Notebook -- Huong dan chi tiet
+# FPT AI Notebook -- Huong dan chi tiet
 
 ## Buoc 1: Tao AI Notebook
 

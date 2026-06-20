@@ -1,1 +1,1 @@
-# Vietnamese MCQA — HackAIthon 2026 Bảng C
+# Vietnamese MCQA â€” HackAIthon 2026 Báº£ng C

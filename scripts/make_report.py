@@ -1,4 +1,4 @@
-﻿"""
+"""
 Generate bilingual Vi/En PDF method report.
 Output: docs/report/method_report.pdf
 Requires: pip install reportlab

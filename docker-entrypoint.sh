@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# docker-entrypoint.sh — run MCQA pipeline inside container
+# docker-entrypoint.sh â€” run MCQA pipeline inside container
 set -euo pipefail
 
 exec python src/run.py \

@@ -1,4 +1,4 @@
-﻿"""
+"""
 Unsloth backend (GPU, memory-optimized inference).
 Uses Unsloth FastLanguageModel to load 4-bit quantized models
 for reduced GPU memory and faster inference.

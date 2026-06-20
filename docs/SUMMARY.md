@@ -1,4 +1,4 @@
-﻿# Method Summary -- HackAIthon 2026 Bang C (INNOVATOR)
+# Method Summary -- HackAIthon 2026 Bang C (INNOVATOR)
 
 ## Team / Submission
 

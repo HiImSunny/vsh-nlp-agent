@@ -1,4 +1,4 @@
-﻿"""
+"""
 answer_index_to_letter(idx) -> str   # 0->"A", 10->"K"
 build_choice_labels(n) -> ["A","B",...] up to K
 build_prompt(record, max_context_chars, max_passage_chars) -> str

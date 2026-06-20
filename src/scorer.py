@@ -1,4 +1,4 @@
-﻿"""score_batch(records, backend, config) -> list[(qid, letter)]"""
+"""score_batch(records, backend, config) -> list[(qid, letter)]"""
 from __future__ import annotations
 from typing import List, Tuple
 

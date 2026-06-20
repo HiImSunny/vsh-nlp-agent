@@ -1,4 +1,4 @@
-﻿"""
+"""
 Benchmark accuracy + speed on a labeled dev set.
 Usage: python scripts/benchmark.py --data-dir data/dev --labels data/dev/labels.csv
 """

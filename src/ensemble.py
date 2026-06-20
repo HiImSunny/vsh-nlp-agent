@@ -1,4 +1,4 @@
-﻿"""
+"""
 Optional ensemble (off by default in run.py).
 Run multiple backends / prompt variants, majority vote.
 """

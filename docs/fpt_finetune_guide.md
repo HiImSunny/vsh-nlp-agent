@@ -1,4 +1,4 @@
-﻿# FPT Fine-tuning Pipeline -- Huong dan chi tiet
+# FPT Fine-tuning Pipeline -- Huong dan chi tiet
 
 Dung credit **$70 (AI Studio)** de fine-tune Qwen3.5-4B.
 Muc tieu: tang accuracy bang **semi-supervised learning** -- dung pseudo-labels tu chinh model.
