@@ -1,10 +1,9 @@
-
 """
 HuggingFace Transformers backend (CPU/GPU fallback).
 Loads model + tokenizer, gets logits at last position,
 picks argmax among valid_labels token ids.
 
-Supports batched inference via score_batch().
+Supports batched inference via score_batch() with mini-batching.
 """
 from __future__ import annotations
 from typing import List
@@ -16,7 +15,8 @@ from src.backends.base import BaseBackend
 
 
 class HFBackend(BaseBackend):
-    def __init__(self, model_path: str):
+    def __init__(self, model_path: str, batch_size: int = 8):
+        self._batch_size = batch_size
         self._tok = AutoTokenizer.from_pretrained(
             model_path, trust_remote_code=True
         )
@@ -49,28 +49,32 @@ class HFBackend(BaseBackend):
     def score_batch(
         self, prompts: List[str], labels_list: List[List[str]]
     ) -> List[str]:
-        batch = self._tok(
-            prompts,
-            padding=True,
-            truncation=True,
-            return_tensors="pt",
-        )
-        outputs = self._model(
-            input_ids=batch["input_ids"],
-            attention_mask=batch["attention_mask"],
-        )
-        logits = outputs.logits
-
         results: List[str] = []
-        for i in range(len(prompts)):
-            seq_len = batch["attention_mask"][i].sum().item()
-            last_logits = logits[i, seq_len - 1, :]
-            valid_labels = labels_list[i]
-            scores = {
-                label: last_logits[self._label_id(label)].item()
-                for label in valid_labels
-            }
-            results.append(max(scores, key=scores.__getitem__))
+        bsz = self._batch_size
+        for start in range(0, len(prompts), bsz):
+            chunk_prompts = prompts[start:start + bsz]
+            chunk_labels = labels_list[start:start + bsz]
+            batch = self._tok(
+                chunk_prompts,
+                padding=True,
+                truncation=True,
+                return_tensors="pt",
+            )
+            batch = {k: v.to(self._model.device) for k, v in batch.items()}
+            outputs = self._model(
+                input_ids=batch["input_ids"],
+                attention_mask=batch["attention_mask"],
+            )
+            logits = outputs.logits
+            for i in range(len(chunk_prompts)):
+                seq_len = batch["attention_mask"][i].sum().item()
+                last_logits = logits[i, seq_len - 1, :]
+                valid_labels = chunk_labels[i]
+                scores = {
+                    label: last_logits[self._label_id(label)].item()
+                    for label in valid_labels
+                }
+                results.append(max(scores, key=scores.__getitem__))
         return results
 
     def close(self) -> None:
