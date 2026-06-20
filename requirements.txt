@@ -6,7 +6,8 @@
 # unsloth>=2025.0.0
 
 # Hugging Face (CPU dev fallback)
-transformers>=4.40.0
+# Qwen3.5 needs transformers>=4.52.0 (model type "qwen3_5")
+transformers>=4.52.0
 accelerate>=0.29.0
 torch>=2.1.0
 
