@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/dev/**)",
+      "Bash(git -C /Users/dev/workspace-a409e2df log --oneline -20)",
+      "Bash(git -C /Users/dev/workspace-a409e2df status)",
+      "Bash(python -c \"import json; d=json.load\\(open\\('public-test_1780368312.json', encoding='utf-8'\\)\\); print\\('type:', type\\(d\\)\\); print\\('len:', len\\(d\\) if hasattr\\(d,'__len__'\\) else 'n/a'\\); print\\('sample keys:', list\\(d[0].keys\\(\\)\\) if isinstance\\(d,list\\) and d and isinstance\\(d[0],dict\\) else \\(list\\(d.keys\\(\\)\\)[:20] if isinstance\\(d,dict\\) else 'n/a'\\)\\)\")",
+      "Bash(PYTHONIOENCODING=utf-8 python *)",
+      "Bash(git init *)",
+      "Bash(git config *)"
+    ]
+  }
+}
