@@ -1,11 +1,11 @@
-# ─────────────────────────────────────────────────────────────────────────────
-# HackAIthon 2026 Bảng C — Vietnamese MCQA Docker image
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# HackAIthon 2026 Báº£ng C â€” Vietnamese MCQA Docker image
 # Build: docker build -t mcqa-hackaithon .
 # Run:   docker run --gpus all \
 #          -v /path/to/data:/data:ro \
 #          -v /path/to/output:/output \
 #          mcqa-hackaithon
-# ─────────────────────────────────────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 FROM python:3.11-slim
 
@@ -33,7 +33,7 @@ COPY src/ src/
 COPY docker-entrypoint.sh .
 RUN chmod +x docker-entrypoint.sh
 
-# ── Model weights ────────────────────────────────────────────────────────────
+# â”€â”€ Model weights â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # Bake weights into image so the container works offline at eval time.
 # Set MCQA_MODEL_PATH env to the baked path.
 #
@@ -42,7 +42,7 @@ RUN chmod +x docker-entrypoint.sh
 # ENV MCQA_MODEL_PATH=/weights/qwen3.5-4b
 #
 # Option B: download at build time (needs internet during docker build)
-# ARG MODEL_ID=Qwen/Qwen3.5-4B-Instruct
+# ARG MODEL_ID=Qwen/Qwen3.5-4B
 # RUN python -c "from transformers import AutoTokenizer, AutoModelForCausalLM; \
 #                AutoTokenizer.from_pretrained('$MODEL_ID'); \
 #                AutoModelForCausalLM.from_pretrained('$MODEL_ID')"

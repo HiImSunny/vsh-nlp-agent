@@ -58,10 +58,10 @@ def convert_to_alpaca(
             f"{l}. {c}" for l, c in zip(labels_list, choices)
         )
         instruction = (
-            "ÄÃ¢y lÃ  cÃ¢u há»i tráº¯c nghiá»‡m tiáº¿ng Viá»‡t. "
-            "Chá»n Ä‘Ã¡p Ã¡n Ä‘Ãºng báº±ng cÃ¡ch tráº£ lá»i CHá»ˆ báº±ng má»™t chá»¯ cÃ¡i."
+            "Ã„ÂÃƒÂ¢y lÃƒÂ  cÃƒÂ¢u hÃ¡Â»Âi trÃ¡ÂºÂ¯c nghiÃ¡Â»â€¡m tiÃ¡ÂºÂ¿ng ViÃ¡Â»â€¡t. "
+            "ChÃ¡Â»Ân Ã„â€˜ÃƒÂ¡p ÃƒÂ¡n Ã„â€˜ÃƒÂºng bÃ¡ÂºÂ±ng cÃƒÂ¡ch trÃ¡ÂºÂ£ lÃ¡Â»Âi CHÃ¡Â»Ë† bÃ¡ÂºÂ±ng mÃ¡Â»â„¢t chÃ¡Â»Â¯ cÃƒÂ¡i."
         )
-        input_text = f"CÃ¢u há»i: {question}\n\n{choices_text}\nÄÃ¡p Ã¡n:"
+        input_text = f"CÃƒÂ¢u hÃ¡Â»Âi: {question}\n\n{choices_text}\nÃ„ÂÃƒÂ¡p ÃƒÂ¡n:"
 
         output = labels.get(qid, "") if labels else ""
         if output and output not in labels_list:

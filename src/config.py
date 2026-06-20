@@ -13,7 +13,7 @@ from dataclasses import dataclass, field
 class Config:
     model_id: str = field(
         default_factory=lambda: os.environ.get(
-            "MCQA_MODEL_ID", "Qwen/Qwen3.5-4B-Instruct"
+            "MCQA_MODEL_ID", "Qwen/Qwen3.5-4B"
         )
     )
     model_path: str = field(

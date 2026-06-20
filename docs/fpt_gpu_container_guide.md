@@ -10,7 +10,7 @@
    - Volume: 20GB (du)
    - Thoi gian: chon khoang thoi gian can thiet
 5. Environment Variables (quan trong):
-   - `MODEL=Qwen/Qwen3.5-4B-Instruct` (hoac Qwen3.5-9B-Instruct)
+   - `MODEL=Qwen/Qwen3.5-4B` (hoac Qwen3.5-9B)
    - `HF_TOKEN=hf_...` (token HuggingFace cua ban, can de download model)
 6. SSH public key: them key de SSH vao container
 
@@ -36,7 +36,7 @@ mkdir -p /data /output
 # Upload file public-test_1780368312.json vao /data
 
 # Chay inference (dung luon vLLM co san trong template)
-MCQA_BACKEND=vllm MCQA_MODEL_ID=Qwen/Qwen3.5-4B-Instruct \
+MCQA_BACKEND=vllm MCQA_MODEL_ID=Qwen/Qwen3.5-4B \
   python src/run.py --data-dir /data --output-dir /output
 
 # Ket qua o /output/pred.csv
@@ -58,6 +58,6 @@ Hoac mount volume va download tu FPT console.
 | MCQA_BACKEND | vllm | **Nhanh nhat**, can GPU |
 | MCQA_BACKEND | hf | Transformers, cham hon |
 | MCQA_BACKEND | unslo | Unsloth, tiet kiem VRAM |
-| MCQA_MODEL_ID | Qwen/Qwen3.5-4B-Instruct | 4B params, nhanh |
-| MCQA_MODEL_ID | Qwen/Qwen3.5-9B-Instruct | 9B params, chinh xac hon |
-| MCQA_MODEL_ID | Qwen/Qwen3.5-0.8B-Instruct | Sieu nhe, thu nghiem |
+| MCQA_MODEL_ID | Qwen/Qwen3.5-4B | 4B params, nhanh |
+| MCQA_MODEL_ID | Qwen/Qwen3.5-9B | 9B params, chinh xac hon |
+| MCQA_MODEL_ID | Qwen/Qwen3.5-0.8B | Sieu nhe, thu nghiem |

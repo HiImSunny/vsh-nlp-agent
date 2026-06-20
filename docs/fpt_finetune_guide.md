@@ -14,7 +14,7 @@ Muc tieu: tang accuracy bang **semi-supervised learning** -- dung pseudo-labels 
 ```bash
 # Chay inference bang vLLM tren FPT GPU Container / AI Notebook
 # Dung model LON nhat co the (Qwen3.5-9B) de lay pseudo-labels chat luong cao
-MCQA_BACKEND=vllm MCQA_MODEL_ID=Qwen/Qwen3.5-9B-Instruct \
+MCQA_BACKEND=vllm MCQA_MODEL_ID=Qwen/Qwen3.5-9B \
   python src/run.py --data-dir /data --output-dir /output
 
 # Ket qua: /output/pred.csv (463 dong qid,answer)
@@ -44,7 +44,7 @@ python scripts/prepare_finetune_data.py \
 
 ### 4a. Select Base Model
 - Model source: **Hugging Face**
-- Model name: `Qwen/Qwen3.5-4B-Instruct`
+- Model name: `Qwen/Qwen3.5-4B`
 - Trainer: **Built-in trainer** (SFT)
 
 ### 4b. Dataset
