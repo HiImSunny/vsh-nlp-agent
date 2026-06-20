@@ -37,7 +37,7 @@ class Config:
     )
     batch_size: int = field(
         default_factory=lambda: int(
-            os.environ.get("MCQA_BATCH_SIZE", "32")
+            os.environ.get("MCQA_BATCH_SIZE", "8")
         )
     )
     max_new_tokens: int = 1  # constrained scoring: 1 token only
