@@ -78,6 +78,15 @@ Implication: maximize accuracy first, but the latency term means we cannot just 
 
 Prizes Bang C: 1st = 20,000,000 VND; 2nd = 15M; 3rd = 10M; 3x consolation = 5M.
 
+
+## Git author config (must use for all commits)
+
+- Author name: **Duy Khang**
+- Author email: **duykhang.sunext@gmail.com**
+
+Rewrite history to use this author. Any future commit must use:
+git config user.email "duykhang.sunext@gmail.com" && git config user.name "Duy Khang"
+
 ## User & working preferences
 
 - User is Vietnamese; communicates in Vietnamese. Deliverables the user explicitly asked for: a detailed execution plan, onboarding/"things I need to understand" material, a **report script**, a **PDF**, **presentation slides**, an **end-to-end tracking file**, and **git**.

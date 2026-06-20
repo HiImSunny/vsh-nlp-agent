@@ -42,11 +42,18 @@ RUN chmod +x docker-entrypoint.sh
 # ENV MCQA_MODEL_PATH=/weights/qwen3.5-4b
 #
 # Option B: download at build time (needs internet during docker build)
-# ARG MODEL_ID=Qwen/Qwen3.5-4B
+# ARG MODEL_ID=Qwen/Qwen3.5-9B
 # RUN python -c "from transformers import AutoTokenizer, AutoModelForCausalLM; \
 #                AutoTokenizer.from_pretrained('$MODEL_ID'); \
 #                AutoModelForCausalLM.from_pretrained('$MODEL_ID')"
 # ENV MCQA_MODEL_ID=${MODEL_ID}
+#
+# Available MODEL_ID values:
+#   Qwen/Qwen3.5-4B   (baseline, smaller)
+#   Qwen/Qwen3.5-9B   (larger Qwen, best accuracy potential)
+#   google/gemma-4-E4B-it  (8B, instruction-tuned)
+#   google/gemma-4-E2B-it  (5B, lighter Gemma option)
+# Set MCQA_BACKEND=unslo + MCQA_QUANT=bnb-4bit for 4-bit quantized inference.
 
 # Default environment
 ENV MCQA_BACKEND=vllm
