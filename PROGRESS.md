@@ -1,4 +1,4 @@
-# PROGRESS — Vietnamese MCQA HackAIthon 2026 (Bảng C)
+﻿# PROGRESS — Vietnamese MCQA HackAIthon 2026 (Bảng C)
 
 > Auto-updated each commit. Legend: ✅ done · 🔄 in progress · ⏳ pending · ❌ blocked
 
@@ -34,12 +34,14 @@
 ## Phase 2 — pred.csv v1 (portal submission) 🔜 ACTIVE
 | Task | Status | Date | Notes |
 |------|--------|------|-------|
-| Chay inference Qwen3.5-4B (HF backend) | 🔄 | 2026-06-21 | Dang chay tren FPT H200 |
-| Upload pred.csv len portal | ⏳ | — | **Deadline: before 23/6/2026** |
-| Experiment: Qwen3.5-9B + Unsloth 4-bit | ⏳ | — | `MCQA_MODEL_ID=Qwen/Qwen3.5-9B MCQA_BACKEND=unslo MCQA_QUANT=bnb-4bit` |
-| Experiment: Gemma-4-E4B-it (8B) + Unsloth 4-bit | ⏳ | — | `MCQA_MODEL_ID=google/gemma-4-E4B-it MCQA_BACKEND=unslo MCQA_QUANT=bnb-4bit` |
-| So sanh accuracy giua cac model | ⏳ | — | Chon model tot nhat cho final submission |
-| Iterate & improve | ⏳ | — | Multiple submissions allowed |
+| Run Qwen3.5-4B (HF backend) | ✅ | 2026-06-21 | L4, 227.3s, 2.0 Q/s, fp16, batch=4 |
+| Run Qwen3.5-9B (HF + bnb-4bit) | ✅ | 2026-06-21 | L4, 178.6s, 2.6 Q/s, batch=1, **55 pts** |
+| Run Gemma-4-E4B-it (HF, broken weights) | ✅ | 2026-06-21 | L4, 114.1s, 4.1 Q/s, ~~23.75 pts~~ (weights init random) |
+| Run Gemma-4-E4B-it (HF, fixed weights) | ✅ | 2026-06-21 | L4, 90.3s, 5.1 Q/s, **51.4 pts** |
+| Fix: Gemma4ForCausalLM -> Gemma4ForConditionalGeneration | ✅ | 2026-06-21 | Weight prefix mismatch: model.language_model.layers vs model.layers |
+| Fix: space-prefix labels (" A" not "A") | ✅ | 2026-06-21 | Gemma tokenizer: "A"=236776 (rare) vs " A"=562 (common) |
+| Compare model scores | ⏳ | — | Qwen9B(55) > Gemma(51.4) > Qwen4B(?) |
+| Submit best model | ⏳ | — | 2 submissions left. Deadline: before 23/6/2026 |
 
 ## Phase 3 — Dockerize & Push
 | Task | Status | Date | Notes |
@@ -65,16 +67,20 @@
 ---
 
 ## Experiment Log
-| When | Model | Backend | Quant | Accuracy | Time | Notes |
-|------|-------|---------|-------|----------|------|-------|
-| ⏳ | Qwen3.5-4B | hf | none | — | — | Baseline (dang chay tren FPT) |
-| ⏳ | Qwen3.5-9B | unslo | bnb-4bit | — | — | Model lon nhat duoc phep |
-| ⏳ | Gemma-4-E4B-it | unslo | bnb-4bit | — | — | 8B, instruct-tuned |
+| When | Model | Backend | Quant | Score | Time | Notes |
+|------|-------|---------|-------|-------|------|-------|
+| 2026-06-21 | Qwen3.5-4B | hf | none | (overwritten) | 227.3s | L4, fp16, batch=4 |
+| 2026-06-21 | Qwen3.5-9B | hf | bnb-4bit | **55.0** | 178.6s | L4, batch=1, 4-bit |
+| 2026-06-21 | Gemma-4-E4B-it | hf | none | ~~23.75~~ | 114.1s | Broken: Gemma4ForCausalLM + bare labels |
+| 2026-06-21 | Gemma-4-E4B-it | hf | none | **51.4** | 90.3s | Fixed: Gemma4ForConditionalGeneration + space labels |
 
 ## Submission Log
-| When | Version | Portal Score | Notes |
-|------|---------|-------------|-------|
-| — | v0 (stub) | — | placeholder |
+| When | Version | Score | Notes |
+|------|---------|-------|-------|
+| 2026-06-21 | Qwen3.5-4B | (overwritten) | First upload, overwritten by 9B |
+| 2026-06-21 | Qwen3.5-9B | **55** | Best so far |
+| 2026-06-21 | Gemma-4-E4B-it v1 | **23.75** | Broken weights |
+| 2026-06-21 | Gemma-4-E4B-it v2 | **51.4** | Fixed. 2 submissions left |
 
 ---
 
