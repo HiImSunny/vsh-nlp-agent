@@ -1,62 +1,35 @@
-# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-# HackAIthon 2026 Báº£ng C â€” Vietnamese MCQA Docker image
-# Build: docker build -t mcqa-hackaithon .
-# Run:   docker run --gpus all \
-#          -v /path/to/data:/data:ro \
-#          -v /path/to/output:/output \
-#          mcqa-hackaithon
-# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ============================================================================
+# HackAIthon 2026 Bang C - Vietnamese MCQA Docker image
+# Build:  docker build -t hiimsunny/vsh-nlp-agent:latest .
+# Run:    docker run --gpus all \
+#           -v /path/to/data:/data:ro \
+#           -v /path/to/output:/output \
+#           hiimsunny/vsh-nlp-agent:latest
+# ============================================================================
 
 FROM python:3.11-slim
 
-# System dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
         git curl ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir bitsandbytes
 
-# Install vLLM (GPU path); skip if building CPU-only image
-# Uncomment for GPU image with vLLM:
-# RUN pip install --no-cache-dir vllm
-
-# Install Unsloth (GPU, memory-efficient); skip if building CPU-only image
-# Uncomment for GPU image with Unsloth:
-# RUN pip install --no-cache-dir unsloth
-
-# Copy application source
 COPY src/ src/
 COPY docker-entrypoint.sh .
 RUN chmod +x docker-entrypoint.sh
 
-# â”€â”€ Model weights â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-# Bake weights into image so the container works offline at eval time.
-# Set MCQA_MODEL_PATH env to the baked path.
-#
-# Option A: copy pre-downloaded weights
-# COPY weights/ /weights/
-# ENV MCQA_MODEL_PATH=/weights/qwen3.5-4b
-#
-# Option B: download at build time (needs internet during docker build)
-# ARG MODEL_ID=Qwen/Qwen3.5-9B
-# RUN python -c "from transformers import AutoTokenizer, AutoModelForCausalLM; \
-#                AutoTokenizer.from_pretrained('$MODEL_ID'); \
-#                AutoModelForCausalLM.from_pretrained('$MODEL_ID')"
-# ENV MCQA_MODEL_ID=${MODEL_ID}
-#
-# Available MODEL_ID values:
-#   Qwen/Qwen3.5-4B   (baseline, smaller)
-#   Qwen/Qwen3.5-9B   (larger Qwen, best accuracy potential)
-#   google/gemma-4-E4B-it  (8B, instruction-tuned)
-#   google/gemma-4-E2B-it  (5B, lighter Gemma option)
-# Set MCQA_BACKEND=unslo + MCQA_QUANT=bnb-4bit for 4-bit quantized inference.
+ARG MODEL_ID=Qwen/Qwen3.5-9B
+RUN python -c "from transformers import AutoTokenizer; from transformers import AutoModelForCausalLM; from transformers import BitsAndBytesConfig; import torch; q = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16, bnb_4bit_use_double_quant=True); AutoTokenizer.from_pretrained('${MODEL_ID}', trust_remote_code=True); AutoModelForCausalLM.from_pretrained('${MODEL_ID}', trust_remote_code=True, quantization_config=q, device_map='auto'); print('Model cached OK')"
+ENV MCQA_MODEL_ID=${MODEL_ID}
 
-# Default environment
-ENV MCQA_BACKEND=vllm
+ENV MCQA_BACKEND=hf
+ENV MCQA_QUANT=bnb-4bit
+ENV MCQA_BATCH_SIZE=4
 ENV PYTHONIOENCODING=utf-8
 ENV PYTHONUNBUFFERED=1
 

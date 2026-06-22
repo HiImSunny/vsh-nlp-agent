@@ -13,17 +13,17 @@ from dataclasses import dataclass, field
 class Config:
     model_id: str = field(
         default_factory=lambda: os.environ.get(
-            "MCQA_MODEL_ID", "Qwen/Qwen3.5-4B"
+            "MCQA_MODEL_ID", "Qwen/Qwen3.5-9B"
         )
     )
     model_path: str = field(
         default_factory=lambda: os.environ.get("MCQA_MODEL_PATH", "")
     )
     backend: str = field(
-        default_factory=lambda: os.environ.get("MCQA_BACKEND", "stub")
+        default_factory=lambda: os.environ.get("MCQA_BACKEND", "hf")
     )
     quant: str = field(
-        default_factory=lambda: os.environ.get("MCQA_QUANT", "none")
+        default_factory=lambda: os.environ.get("MCQA_QUANT", "bnb-4bit")
     )
     max_context_chars: int = field(
         default_factory=lambda: int(
@@ -37,7 +37,7 @@ class Config:
     )
     batch_size: int = field(
         default_factory=lambda: int(
-            os.environ.get("MCQA_BATCH_SIZE", "2")
+            os.environ.get("MCQA_BATCH_SIZE", "4")
         )
     )
     max_new_tokens: int = 1  # constrained scoring: 1 token only

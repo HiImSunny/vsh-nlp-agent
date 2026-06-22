@@ -1,26 +1,19 @@
-# ── Core inference ────────────────────────────────────────────────────────────
-# vLLM (GPU / production) — install separately on cloud GPU node
-# vllm>=0.4.0
-
-# Unsloth (GPU, memory-efficient) — install separately
-# unsloth>=2025.0.0
-
-# Hugging Face (CPU dev fallback)
-# Qwen3.5 needs transformers>=4.52.0 (model type "qwen3_5")
+# Core inference
 transformers>=4.52.0
 accelerate>=0.29.0
 torch>=2.1.0
+bitsandbytes>=0.43.0
 
-# ── I/O ───────────────────────────────────────────────────────────────────────
+# I/O
 pandas>=2.0.0
 
-# ── Testing ───────────────────────────────────────────────────────────────────
+# Testing
 pytest>=7.4.0
 pytest-cov>=4.1.0
 
-# ── Reporting / slides ────────────────────────────────────────────────────────
+# Reporting
 reportlab>=4.1.0
 python-pptx>=0.6.23
 
-# ── Utilities ─────────────────────────────────────────────────────────────────
+# Utilities
 tqdm>=4.66.0
