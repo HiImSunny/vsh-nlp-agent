@@ -41,14 +41,13 @@ def build_report(output_path: str = REPORT_PATH):
 
     # ===== TITLE =====
     h1("Vietnamese MCQA System")
-    h1("He thong Tra loi Trac nghiem Tieng Viet")
     story.append(Paragraph("HackAIthon 2026 - Bang C (INNOVATOR)", styles["Normal"]))
     story.append(Paragraph("Team: vsh-nlp-agent", styles["Normal"]))
     story.append(Paragraph("Model: Qwen3.5-9B + bnb-4bit + CLS scoring", styles["Normal"]))
     story.append(Spacer(1, 20))
 
     # ===== 1. PROBLEM =====
-    h2("1. Problem / Bai toan")
+    h2("1. Problem Statement")
     p(
         "Build a Vietnamese multiple-choice QA system using small open-source LLMs "
         "(Qwen3.5 <=9B or Gemma-4). Input is a CSV/JSON file with qid, question, choices. "
@@ -57,10 +56,6 @@ def build_report(output_path: str = REPORT_PATH):
     p(
         "Dataset: 463 public questions (up to 11 choices, long passages up to 8712 chars). "
         "Private test: 2000 hidden questions. Scoring: Accuracy (70-80 pts) + Speed (10 pts) + Creativity (10 pts)."
-    )
-    p(
-        "(VI) Xay dung he thong tra loi trac nghiem tieng Viet dung LLM nho nguon mo. "
-        "Dau vao CSV/JSON, dau ra pred.csv. Bo du lieu: 463 cau public, 2000 cau private."
     )
 
     # ===== 2. METHOD =====
@@ -116,7 +111,7 @@ def build_report(output_path: str = REPORT_PATH):
     )
 
     # ===== 4. EXPERIMENTS =====
-    h2("4. Experiments / Ket qua thi nghiem")
+    h2("4. Experiments")
     h3("4.1 Experiment Setup")
     p(
         "GPU: NVIDIA L4 (22GB VRAM) via Lightning.ai, "
